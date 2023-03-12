@@ -19,8 +19,8 @@ jobs:
         hugo-version: 'latest'
         extended: true
 
-    - name: Update Hugo Modules
-      run: hugo mod tidy
+    # - name: Update Hugo Modules
+    #   run: hugo mod tidy
 
     - name: Setup Node
       uses: actions/setup-node@v3
@@ -29,6 +29,7 @@ jobs:
 
     - name: Install node modules
       run: |
+        hugo mod tidy
         hugo mod npm pack
         npm install
 
