@@ -1,0 +1,71 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: Binary Defense
+    url: "https://www.binarydefense.com"
+    location: Stowe, OH
+    # company overview
+    overview: Binary Defense is a widely recognized company for Managed Detection and Response, SIEM and Threat Hunting.
+  positions:
+  - designation: Cybersecurity Analyst, Level II
+    start: Nov 2021
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Support 35+ high-priority clientele while furthering the efforts of the talented internal security teams
+    - Investigate active threats, including containment of compromised assets, gathering malware, and sandboxing.
+    - Evaluate IOCs and map to MITRE while providing input to formulate hunting rules that prevent future attacks.
+    - Utilize a myriad of forensic tools to dump memory, network traffic, and other sources of evidence.
+    - Review information security aspects of emerging technologies to identify how both blue and red team initiatives could incorporate them.
+
+- company:
+    name: MJH3, LLC
+    url: "#"
+    location: Dallas, TX
+    overview: Consulted in the global commodities and futures trading space focusing on technology solutions and services, primarily software and related global infrastructure. Led multiple software and network builds that helped companies launch products, gain global exposure, reduce waste, and add to the bottom line. 
+
+  positions:
+  - designation: Principal
+    start: March 2008
+    end: May 2018
+    responsibilities:
+    - See "Projects" below
+    - Lots of examples
+
+- company:
+    name: Wheel Technologies, Inc.
+    url: "#"
+    location: Carrolton, TX
+    overview: Wheel Technologies is a wheel and rim repair company that engaged with MJH3, LLC, to create an inventory tracking and product automation system. 
+  positions:
+  - designation: Advisor
+    start: Jun 2001
+    end: Jan 2008
+    responsibilities:
+    - Wrote software and built multiple servers, supporting the need for inventory tracking and product automation. 
+    - Increased revenue from $800K to $6M and reduced internal costs by 30% over five years.
+
+- company:
+    name: MJH3 Trading
+    url: "#"
+    location: Chicago, IL
+    overview: Futures and Commodities Trader
+  positions:
+  - designation: Principal
+    start: Jun 1997
+    # end: Jan 2016
+    responsibilities:
+    - Algorithmic trading
+    - Statistical Arbitrage
+    - Hedging of Physical Commodities

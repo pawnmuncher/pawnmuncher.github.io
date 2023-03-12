@@ -1,0 +1,21 @@
+# some information about you
+name: "M Harrison"
+nickname: "Pawnmuncher"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hi, I am"
+image: "images/author/pawn.png"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "rgfsa1+web@gmail.com"
+#  phone: "+"
+  github: pawnmuncher
+  linkedin: cyber-consultant
+
+# some summary about what you do
+summary:
+  - I LOVE Blue Teaming
+  - I LOVE Red Teaming
+#  - I love Active Directory and AAD
+  - I bleed purple
+#  - I love to work with smart people
+  - I love to have fun

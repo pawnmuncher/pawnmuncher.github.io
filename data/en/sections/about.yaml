@@ -1,0 +1,100 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Cybersecurity Analyst
+# your company information
+company:
+  name: Binary Defense
+  url: "https://www.binarydefense.com"
+
+# your resume. this file path should be relative to you "static" directory
+# Dreprecated. Use resourceLinks instead.
+# resume: "files/resume.pdf"
+
+# a summary about you
+summary: 'I love Cybersecurity as it allows me to work under constant pressure, actively engage in problem solving and apply my well-honed critical thinking skills. I am recognized as being a collaborative leader, an excellent communicator and one who loves to take responsibility for results. Recently pivoted to the cybersecurity industry in 2021 after building software and networks for over two decades.'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "rgfsa1+site@gmail.com"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://www.github.com/pawnmuncher"
+
+# - name: Stackoverflow
+#   icon: "fab fa-stack-overflow"
+#   url: "#"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/cyber-consultant"
+
+- name: Twitter
+  icon: "fab fa-twitter"
+  url: "https://twitter.com/pawnmuncher"
+
+# - name: Facebook
+#   icon: "fab fa-facebook"
+#   url: "#"
+
+# - name: Mastadon
+#   icon: "fab fa-mastodon"
+#   url: "#"
+#   rel: "me noopener"
+
+# You can put custom buttons to link your relevant resources.
+# For example, you can put link for your resume.
+resourceLinks:
+- title: "My Resume"
+  url: "files/resume.pdf"
+
+# Show your badges
+# You can show your verifiable certificates from https://www.credly.com.
+# You can also show a circular bar indicating the level of expertise on a certain skill
+badges:
+- type: certification
+  name: Certified Cybersecurity Architect Expert
+  url: "https://www.credly.com/badges/ded230be-5670-423d-8580-291fd3eef3b4"
+  badge: "https://images.credly.com/size/340x340/images/0ba22331-acf9-4e8a-8ce3-b4cc3d376040/image.png"
+
+- type: certification
+  name: Security Analytics Professional
+  url: "https://www.credly.com/badges/1f9c9a50-07fa-4c98-8b2b-487211d497a6"
+  badge: "https://images.credly.com/size/340x340/images/ba1b8072-8ebe-432c-88e5-05bc809c624a/CompTIA_CSAP.png"
+
+- type: certification
+  name: Systems Security Certified Practitioner
+  url: "https://www.credly.com/badges/95959f10-32c1-406b-beb8-e7c111f85377"
+  badge: "https://images.credly.com/size/340x340/images/4e780c60-b569-4c71-bdb9-98a42792b818/isc2_sscp.png"
+
+- type: soft-skill-indicator
+  name: Leadership
+  percentage: 85
+  color: blue
+
+- type: soft-skill-indicator
+  name: Client Centric
+  percentage: 100
+  color: orange
+
+- type: soft-skill-indicator
+  name: Hard Working
+  percentage: 85
+  color: yellow
+
+# you can also provide color code instead of the color name
+# - type: soft-skill-indicator
+#   name: Example 1
+#   percentage: 75
+#   color: "#00adb5"

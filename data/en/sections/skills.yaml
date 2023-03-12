@@ -1,0 +1,49 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+- name: Azure Security Architect
+  logo: /images/sections/skills/Azure.png
+  summary: "The Microsoft cybersecurity architect has subject matter expertise in designing and evolving the cybersecurity strategy to protect an organization's mission and business processes across all aspects of the enterprise architecture. "
+  url: "https://portal.azure.com/"
+
+- name: Security Operations Analyst
+  logo: /images/sections/skills/sc200.png
+  summary: "The Microsoft security operations analyst collaborates with organizational stakeholders to secure information technology systems for the organization."
+  url: "https://portal.azure.com/"
+
+- name: Kusto Query Language
+  logo: /images/sections/skills/kql.png
+  summary: "Kusto Query Language is a powerful tool to explore your data and discover patterns, identify anomalies and outliers, create statistical modeling, and more."
+
+- name: Docker
+  logo: /images/sections/skills/docker.svg
+  summary: "Write most of my programs as dockerized container. Experienced with multi-stage, multi-arch build process."
+  url: "https://www.docker.com/"
+
+# - name: Prometheus
+#   logo: /images/sections/skills/prometheus.png
+#   summary: "Capable of setup, configure Prometheus metrics. Experienced with PromQL, AlertManager. Also, experienced with writing metric exporters."
+#   url: "https://prometheus.io/"
+
+- name: Linux
+  logo: /images/sections/skills/linux.png
+  summary: "Using as the main operating system. Capable of writing bash/shell scripts."
+
+# - name: Git
+#   logo: /images/sections/skills/git.png
+#   summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
+#   url: "https://git-scm.com/"
+
+- name: Python
+  logo: /images/sections/skills/python.png
+  summary: "Know basic Python programming. Used for contest programming and problem solving."
