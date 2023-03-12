@@ -65,7 +65,7 @@ params:
     favicon: /images/sections/skills/Azure.png
 
   # GitHub repo of your site
-  gitRepo: https://github.com/pawnmuncher/toha
+  gitRepo: https://github.com/pawnmuncher/pawnmuncher.github.io
   # Default branch of your Git repo
   gitBranch: main
 
