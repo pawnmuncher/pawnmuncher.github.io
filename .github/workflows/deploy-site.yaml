@@ -33,6 +33,7 @@ jobs:
         hugo mod tidy
         hugo mod npm pack
         npm install
+        hugo mod hugo-toha
 
     - name: Build
       run: hugo --cleanDestinationDir -D -E -F --gc --minify  --verbose
