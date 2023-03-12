@@ -1,4 +1,4 @@
-baseURL: https://pawnmuncher.github.io/
+baseURL: https://pawnmuncher.github.io
 
 languageCode: en-us
 title: "Maron's Site"
@@ -15,6 +15,7 @@ theme: "hugo-toha"
 #   - source: ./node_modules/katex/dist/fonts
 #     target: static/fonts
 
+
 # Manage languages
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
 languages:
@@ -23,12 +24,9 @@ languages:
     weight: 1
   bn:
     languageName: বাংলা
-    weight: 0
+    weight: 3
 
-# disableLanguages:
-# - bn
-
-# Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weigh      t" should rocks.
+# Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
 # DefaultContentLanguage: bn
 
 # Allow raw html in markdown file
@@ -55,18 +53,17 @@ enableEmoji: true
 # Site parameters
 params:
   # Background image of the landing page
-  background: /images/site/g.gif
+  background: /images/site/background.jpg
 
   # Provide logos for your site. The inverted logo will be used in the initial
   # transparent navbar and the main logo will be used in the non-transparent navbar.
   logo:
-    main: /images/sections/skills/Azure.png
-    inverted: /images/sections/skills/Azure.png
-    favicon: /images/sections/skills/Azure.png
-  favicon: /images/sections/skills/Azure.png
+    main: /images/site/main-logo.png
+    inverted: /images/site/inverted-logo.png
+    favicon: /images/site/favicon.png
 
   # GitHub repo of your site
-  gitRepo: https://github.com/pawnmuncher/pawnmuncher.github.io
+  gitRepo: https://github.com/pawnmuncher/pawnmuncher.io
   # Default branch of your Git repo
   gitBranch: main
 
@@ -96,14 +93,14 @@ params:
 
     # Enable and configure blog posts
     blog:
-      enable: false
+      enable: true
       # Share post on different social media
       shareButtons:
-        facebook: false
+        facebook: true
         twitter: true
         linkedin: true
-        reddit: false
-        whatsapp: false
+        reddit: true
+        whatsapp: true
         email: true
         # tumblr: true
         # pocket: true
@@ -112,14 +109,14 @@ params:
 
     # Enable & configure "Notes" features
     notes:
-      enable: false
+      enable: true
 
     # Enable comment feature. There, should be only one of them.
     comment:
       enable: false
       services:
         disqus:
-          shortName: MJH Website
+          shortName: toha-example-site
         # valine:
         #   appId: HTV6askWxVo3vOxlqjjaq2hd-MsYXbMMI
         #   appKey: pVrT3C85KGIuk27t07eh6bUC
@@ -150,7 +147,7 @@ params:
 
     # Enable Analytics
     analytics:
-      enabled: false
+      enabled: true
       services:
         # Google Analytics
         google:
@@ -282,10 +279,10 @@ params:
     # Show/hide newsletter section in the footer. Default is "true".
     # Currently, it supports "mailchimp".
     newsletter:
-      enable: false
+      enable: true
       provider: mailchimp
       mailchimpURL: https://github.us1.list-manage.com/subscribe/post?u=19de52a4603135aae97163fd8&amp;id=094a24c76e
 
     # Show/hide disclaimer notice in the footer. Default is "false".
     disclaimer:
-      enable: false
+      enable: true
