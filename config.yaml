@@ -25,8 +25,8 @@ languages:
     languageName: বাংলা
     weight: 0
 
-disableLanguages:
-- bn
+# disableLanguages:
+# - bn
 
 # Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
 # DefaultContentLanguage: bn
@@ -64,7 +64,7 @@ params:
     inverted: /images/sections/skills/Azure.png
     favicon: /images/sections/skills/Azure.png
   favicon: /images/sections/skills/Azure.png
-  
+
   # GitHub repo of your site
   gitRepo: https://github.com/pawnmuncher/pawnmuncher.github.io
   # Default branch of your Git repo
