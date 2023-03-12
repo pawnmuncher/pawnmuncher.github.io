@@ -33,8 +33,7 @@ jobs:
         npm install
 
     - name: Build
-      run: hugo --minify
-
+      run: hugo --cleanDestinationDir -D -E -F --gc --minify  --verbose
     # push the generated content into the `gh-pages` branch.
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.9.0
