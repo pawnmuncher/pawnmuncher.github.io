@@ -4,7 +4,7 @@
 
 {{ partial "helpers/style-bundle.html" . }}
 
-<!--================= fab-icon =========================-->
+<!-- ================= fab-icon =========================
 {{/* add favicon only if the site author has provided the the favicon */}}
 {{ if site.Params.logo.favicon }}
   {{ $favicon := site.Params.logo.favicon }}
@@ -17,4 +17,4 @@
   {{ $favicon = $favicon.RelPermalink}}
 
   <link rel="icon" type="image/png" href="{{ $favicon }}" />
-{{end}}
+{{end}} -->
