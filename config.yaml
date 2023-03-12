@@ -28,7 +28,7 @@ languages:
 # disableLanguages:
 # - bn
 
-# Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weight" should rocks.
+# Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weigh      t" should rocks.
 # DefaultContentLanguage: bn
 
 # Allow raw html in markdown file
@@ -112,11 +112,11 @@ params:
 
     # Enable & configure "Notes" features
     notes:
-      enable: true
+      enable: false
 
     # Enable comment feature. There, should be only one of them.
     comment:
-      enable: true
+      enable: false
       services:
         disqus:
           shortName: MJH Website
