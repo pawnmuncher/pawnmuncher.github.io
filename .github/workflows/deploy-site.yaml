@@ -39,7 +39,7 @@ jobs:
         hugo mod hugo-toha
 
     - name: Build
-      run: hugo --cleanDestinationDir -D -E -F --gc --minify  --verbose
+      run: hugo version #hugo --cleanDestinationDir -D -E -F --gc --minify  --verbose
     # push the generated content into the `gh-pages` branch.
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.9.0
