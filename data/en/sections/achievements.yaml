@@ -41,6 +41,11 @@ achievements:
   image: /images/sections/achievements/msft_arch_expert.png
   summary: Microsoft Certified - Cybersecurity Architect Expert
   url: "https://www.credly.com/badges/ded230be-5670-423d-8580-291fd3eef3b4/public_url"
+- title: CompTIA - CySA+
+  image: /images/sections/achievements/cysa.png
+  summary: CompTIA Certified - Cybersecurity Analyst Plus
+  url: "https://www.credly.com/badges/23d43a6e-5759-4dde-aa7a-2e2f516065c6/public_url"
+
 # - title: Award Winner
 #   image: /images/sections/achievements/woman-winner.jpg
 #   summary: Wined best paper award at IEE Conference 2020.
