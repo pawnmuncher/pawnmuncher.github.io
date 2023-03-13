@@ -25,8 +25,8 @@ languages:
     languageName: বাংলা
     weight: 0
 
-# disableLanguages:
-# - bn
+disableLanguages:
+- bn
 
 # Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weigh      t" should rocks.
 # DefaultContentLanguage: bn
