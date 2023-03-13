@@ -19,6 +19,11 @@ achievements:
 - title: Graduation
   image: /images/sections/achievements/graduation-cap.jpg
   summary: Bachelor of Science (B.S.) in Cybersecurity and Information Assurance, WGU Texas.
+- title: Hack the Box
+  image: /images/sections/achievements/htb.jpg
+  summary: Top 500 Global Ranking
+  url: "https://app.hackthebox.com/profile/277042"
+
 # - title: Award Winner
 #   image: /images/sections/achievements/woman-winner.jpg
 #   summary: Wined best paper award at IEE Conference 2020.
