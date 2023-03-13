@@ -44,28 +44,30 @@ experiences:
     - Lots of examples
 
 - company:
-    name: Wheel Technologies, Inc.
-    url: "#"
-    location: Carrolton, TX
-    overview: Wheel Technologies is a wheel and rim repair company that engaged with MJH3, LLC, to create an inventory tracking and product automation system. 
+    name: Bookmap
+    url: "https://bookmap.com"
+    location: Tel Aviv, IL
+    overview: Visualize market liquidity and gain incredible insight into the order book. The Bookmap trading platform provides a range of remarkable trading tools.
   positions:
-  - designation: Advisor
+  - designation: Advisory Chair
     start: Jun 2001
     end: Jan 2008
     responsibilities:
-    - Wrote software and built multiple servers, supporting the need for inventory tracking and product automation. 
-    - Increased revenue from $800K to $6M and reduced internal costs by 30% over five years.
+    - Led software and network design as well as implementation for connectivity to dozens of global exchanges and data vendor providers. 
+    - Joined this startup at the beginning, growing its revenue by 100% or more every year for three years ($800K/year upon leaving).
+    - Built a business plan and go-to-market strategy while launching a revolutionary trading program.
 
 - company:
     name: MJH3 Trading
     url: "#"
     location: Chicago, IL
-    overview: Futures and Commodities Trader
+    overview: Self Employed Derivatives trader focused on both exchange traded and off exchange assets.
   positions:
   - designation: Principal
     start: Jun 1997
     # end: Jan 2016
     responsibilities:
-    - Algorithmic trading
-    - Statistical Arbitrage
-    - Hedging of Physical Commodities
+    - Built internal data collection software to source real time data from multiple exchanges globally.
+    - Applied proprietary quantitative algorithms to all available data sources to locate and exploit market inefficiencies.
+    - Automated the execution of 1000's of orders per second as a Statistical Arbitrage Specialist
+    - Hedging all forms of risk and asset exposure using Futures and Options
