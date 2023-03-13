@@ -15,10 +15,12 @@ achievements:
   summary: Top Defender Award at Binary Defense Dec 2022.
 - title: Lockheed Martin Cyber Challenge
   image: /images/sections/achievements/lm.jpg
-  summary: Placed 9th out of 388 aprticipants nationally
+  summary: Placed 9th out of 388 participants nationally
+  url: files/LockheedMartinScoreReport.pdf
 - title: Graduation
   image: /images/sections/achievements/graduation-cap.jpg
   summary: Bachelor of Science (B.S.) in Cybersecurity and Information Assurance, WGU Texas.
+  url: file/WGU_award.pdf
 - title: Hack the Box
   image: /images/sections/achievements/htb.jpg
   summary: Top 500 Global Ranking
