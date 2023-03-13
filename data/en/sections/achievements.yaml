@@ -25,7 +25,22 @@ achievements:
   image: /images/sections/achievements/htb.jpg
   summary: Top 500 Global Ranking
   url: "https://app.hackthebox.com/profile/277042"
-
+- title: Security Operations Analyst Associate
+  image: /images/sections/achievements/sc200.png
+  summary: Microsoft Certified - Security Operations Analyst Associate
+  url: "https://www.credly.com/badges/292d7182-83e7-460e-973b-f2650ca59059/public_url"
+- title: Cybersecurity Architect Expert
+  image: /images/sections/achievements/msft_arch_expert.png
+  summary: Microsoft Certified - Cybersecurity Architect Expert
+  url: "https://www.credly.com/badges/ded230be-5670-423d-8580-291fd3eef3b4/public_url"
+- title: Microsoft Certified - Kusto Query Language Detective KQL 
+  image: /images/sections/achievements/kql_dic.png
+  summary: Microsoft Certified - The ultimate badge for the ultimate Kusto detective!
+  url: "https://www.credly.com/badges/c2fae269-883d-4cf1-beda-f8dbbf2d6522/public_url"
+- title: ISC2 Certified - SSCP  
+  image: /images/sections/achievements/sscp.png
+  summary: ISC2 - Systems Security Certified Practitioner
+  url: "https://www.credly.com/badges/95959f10-32c1-406b-beb8-e7c111f85377/public_url"   
 # - title: Award Winner
 #   image: /images/sections/achievements/woman-winner.jpg
 #   summary: Wined best paper award at IEE Conference 2020.
