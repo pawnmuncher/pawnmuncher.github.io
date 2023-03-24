@@ -1,4 +1,6 @@
 resources/*
 node_modules/*
 .vscode
+.dccache
+
 
