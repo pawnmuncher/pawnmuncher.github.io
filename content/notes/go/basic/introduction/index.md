@@ -10,7 +10,7 @@ menu:
 ---
 <!-- A Sample Program -->
 {{< note title="Hello World">}}
-A sample go program is show here.
+A sample go program is shown here.
   
 ```go
 package main
