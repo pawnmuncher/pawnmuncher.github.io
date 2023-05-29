@@ -1,3 +1,0 @@
----
-title: Notes Are Fun
----
