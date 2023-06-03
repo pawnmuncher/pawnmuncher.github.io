@@ -69,6 +69,7 @@ PhoneCalls
     on CallConnectionId 
 | summarize DistinctDestinations = dcount(Destination) by Origin
 | top 1 by DistinctDestinations
+
 ```
 {{< /note >}}
 
