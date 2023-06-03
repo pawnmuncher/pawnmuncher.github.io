@@ -4,76 +4,73 @@ menu:
   notes:
     name: KQL
     identifier: notes-KQL
-    weight: 0
+    weight: 100
 ---
-
-# KQL Notes
 https://detective.kusto.io/inbox
 
-{{< note title="Season 2 - Case 0 - Onboarding" >}}
-
+{{< note title="Season 2 - Case 2 - Catch the Phishermen!" >}}
 ```SQL
-//Case 0 training
-DetectiveCases
-| where EventType == 'CaseOpened'
-| extend Bounty = toreal(Properties.Bounty)
+// Training
+
+//Get the schema, know what we are working with
+PhoneCalls
+| getschema
+
+//see how big a data set
+PhoneCalls
+| count 
+
+//see some example data
+PhoneCalls
+| take 100
+
+//parse "out" the json data using dotNotation so we can use it to filter
+PhoneCalls 
+| where EventType == 'Connect' 
+| extend Origin=tostring(Properties.Origin), Destination=tostring(Properties.Destination), Hidden=tobool(Properties.IsHidden) 
+| take 10
+
+//Test 1 using parsed json as filters
+PhoneCalls 
+| where EventType == 'Connect' 
+| where tobool(Properties.IsHidden) == false or Properties !has 'IsHidden'
+| summarize Count=count() by Phone=tostring(Properties.Origin) 
+| top 1 by Count
+
+//Perform some statistics
+PhoneCalls 
+| where EventType =='Connect' 
+| summarize calls=count() by bin(Timestamp, 1h) 
+| summarize avg(calls), percentile(calls, 50)
+
+//Use join within same table to see how many calls the phone # rec'd and hung up on
+PhoneCalls 
+| where EventType == 'Connect'
+| where Properties.Destination != '0' 
+| join kind=inner
+    (PhoneCalls
+    | where EventType == 'Disconnect'
+    | extend DisconnectProperties = Properties) 
+    on CallConnectionId 
+| where DisconnectProperties.DisconnectedBy == 'Destination'
 | count
 
-DetectiveCases
-| where EventType == 'CaseSolved'
-| summarize CasesSolved=count() by DetectiveId
-//| count
-| top 10 by CasesSolved
-
-DetectiveCases
-| where EventType == 'CaseOpened'
-| project CaseOpened = Timestamp, CaseId
-| join kind=inner 
-    (
-    DetectiveCases
-    | where EventType == 'CaseAssigned'
-    | summarize FirstAssigned=min(Timestamp) by CaseId)
-    on CaseId
-| summarize Average=avg(FirstAssigned - CaseOpened)
-
-DetectiveCases
-| where EventType == 'CaseOpened'
-| project CaseOpened = Timestamp, CaseId
-| join kind=inner 
-    (
-    DetectiveCases
-    | where EventType == 'CaseSolved'
-    | summarize CaseSolved=min(Timestamp) by CaseId)
-    on CaseId
-| summarize Average=avg(CaseSolved - CaseOpened)
-
-DetectiveCases
-| where EventType == 'CaseOpened'
-| project CaseOpened=Timestamp, CaseId
-| join kind=inner (
-    DetectiveCases
-    | where EventType == 'CaseSolved'
-    | summarize CaseSolved=min(Timestamp) by CaseId
-    ) on CaseId
-| summarize avg(CaseSolved - CaseOpened)
-
-//Case 0 Solved
-DetectiveCases
-| where Timestamp >= datetime(2022-01-01) and Timestamp < datetime(2023-01-01)
-| where EventType == "CaseOpened" and isnotnull(Properties.Bounty) and isnotnull(CaseId)
-| project CaseId, Bounty = todouble(parse_json(Properties).Bounty)
-| join kind=inner (
-    DetectiveCases
-    | where EventType == "CaseAssigned" and isnotnull(DetectiveId) and isnotnull(CaseId)
-    | project CaseId, DetectiveId
-) on CaseId
-| summarize TotalEarnings = sum(Bounty) by DetectiveId
-| top 10 by TotalEarnings desc
-
+//Solution
+PhoneCalls 
+| where EventType == 'Connect'
+| extend Origin  = tostring(Properties.Origin)
+| extend Destination = tostring(Properties.Destination)  
+| where Properties has 'IsHidden'
+| join kind=inner
+    (PhoneCalls
+    | where EventType == 'Disconnect'
+    | extend DisconnectedBy = tostring(Properties.DisconnectedBy)
+    | where DisconnectedBy == 'Destination')
+    on CallConnectionId 
+| summarize DistinctDestinations = dcount(Destination) by Origin
+| top 1 by DistinctDestinations
 ```
-
 {{< /note >}}
-
 
 {{< note title="Season 2 - Case 1 - To bill or not to bill?" >}}
 ```sql
@@ -149,31 +146,86 @@ Consumption
 | lookup Costs on MeterType
 | summarize sum(Consumed * Cost)
 
+//Even cleaner using the DISTINCT function
+Consumption
+| distinct Consumed, HouseholdId, MeterType, Timestamp
+| lookup Costs on MeterType
+| summarize round(sum(Consumed * Cost),2)
+
 ```
 
 {{< /note >}}
 
 {{< note title="Kusto Detective KQL Challenge Information" >}}
 
+```MD
+## Welcome to the Kusto Detective Agency - Season 2!
+Here you can find my solutions for Season 2.
+
+Feel free to reach out if you have any questions.
+```
+{{< /note >}}
+
+{{< note title="Season 2 - Case 0 - Onboarding" >}}
+
 ```SQL
-Welcome to the Kusto Detective Agency - Season 2!
-If you've been here before, congrats on leveling up! Click that log-in button to access your account.
+//Case 0 training
+DetectiveCases
+| where EventType == 'CaseOpened'
+| extend Bounty = toreal(Properties.Bounty)
+| count
 
-But if you're new and don't have a free Kusto cluster or KQL database, fear not! Follow the instructions in the FAQ section to create one and join the detective party. Your shiny new cluster will be your go-to investigative tool, and its URL will be your secret agent identity.
+DetectiveCases
+| where EventType == 'CaseSolved'
+| summarize CasesSolved=count() by DetectiveId
+//| count
+| top 10 by CasesSolved
 
-If you have been here for Season 1, you may be surprised to find yourself as a Rookie again. You see, it's all about innovation and hitting refresh. So, it's a fresh start for everyone. Yet we believe in excellence and that's why we need your detective skills to unveil the crème de la crème of detectives from the past year, 2022. This is like the ultimate leaderboard challenge where we crown the "Most Epic Detective of the Year." Exciting, right?
+DetectiveCases
+| where EventType == 'CaseOpened'
+| project CaseOpened = Timestamp, CaseId
+| join kind=inner 
+    (
+    DetectiveCases
+    | where EventType == 'CaseAssigned'
+    | summarize FirstAssigned=min(Timestamp) by CaseId)
+    on CaseId
+| summarize Average=avg(FirstAssigned - CaseOpened)
 
-Imagine our agency as a buzzing beehive, like StackOverflow on steroids. We have a crazy number of cases popping up every day, each with a juicy bounty attached (yes, cold, hard cash!). And guess what? We've got thousands of Kusto Detectives scattered across the globe, all itching to pick a case and earn their detective stripes. But here's the catch: only the first detective to crack the case gets the bounty and major street cred!
+DetectiveCases
+| where EventType == 'CaseOpened'
+| project CaseOpened = Timestamp, CaseId
+| join kind=inner 
+    (
+    DetectiveCases
+    | where EventType == 'CaseSolved'
+    | summarize CaseSolved=min(Timestamp) by CaseId)
+    on CaseId
+| summarize Average=avg(CaseSolved - CaseOpened)
 
-So, your mission, should you choose to accept it, is to dig into the vast archives of our system operation logs from the legendary year 2022. You're on a quest to unearth the absolute legend, the detective with the biggest impact on our business—the one who raked in the most moolah by claiming bounties like a boss!
+DetectiveCases
+| where EventType == 'CaseOpened'
+| project CaseOpened=Timestamp, CaseId
+| join kind=inner (
+    DetectiveCases
+    | where EventType == 'CaseSolved'
+    | summarize CaseSolved=min(Timestamp) by CaseId
+    ) on CaseId
+| summarize avg(CaseSolved - CaseOpened)
 
-Feeling a bit rusty or want to level up your Kusto skills? No worries, my friend. We've got your back with the "Train Me" section. It's like a power-up that'll help you sharpen your Kusto-fu to tackle each case head-on. Oh, and if you stumble upon a mind-boggling case and need a little nudge, the "Hints" are there to save the day!
+//Case 0 Solved
+DetectiveCases
+| where Timestamp >= datetime(2022-01-01) and Timestamp < datetime(2023-01-01)
+| where EventType == "CaseOpened" and isnotnull(Properties.Bounty) and isnotnull(CaseId)
+| project CaseId, Bounty = todouble(parse_json(Properties).Bounty)
+| join kind=inner (
+    DetectiveCases
+    | where EventType == "CaseAssigned" and isnotnull(DetectiveId) and isnotnull(CaseId)
+    | project CaseId, DetectiveId
+) on CaseId
+| summarize TotalEarnings = sum(Bounty) by DetectiveId
+| top 10 by TotalEarnings desc
 
-Now, strap on your detective hat, embrace the thrill, and get ready to rock this investigation. The fate of the "Most Epic Detective of the Year" rests in your hands!
-
-Good luck, rookie, and remember to bring your sense of humor along for this wild ride!
-
-Lieutenant Laughter
 ```
 
 {{< /note >}}
