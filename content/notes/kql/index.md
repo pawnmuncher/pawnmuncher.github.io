@@ -43,7 +43,7 @@ PhoneCalls
 | summarize calls=count() by bin(Timestamp, 1h) 
 | summarize avg(calls), percentile(calls, 50)
 
-//Use join within same table to see how many calls the phone # rec'd and hung up on
+//Use join 
 PhoneCalls 
 | where EventType == 'Connect'
 | where Properties.Destination != '0' 
