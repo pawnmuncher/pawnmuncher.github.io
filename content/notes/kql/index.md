@@ -58,8 +58,7 @@ PhoneCalls
 //Solution
 PhoneCalls 
 | where EventType == 'Connect'
-| extend Origin  = tostring(Properties.Origin)
-| extend Destination = tostring(Properties.Destination)  
+| extend Origin=tostring(Properties.Origin), Destination=tostring(Properties.Destination)
 | where Properties has 'IsHidden'
 | join kind=inner
     (PhoneCalls
@@ -67,8 +66,8 @@ PhoneCalls
     | extend DisconnectedBy = tostring(Properties.DisconnectedBy)
     | where DisconnectedBy == 'Destination')
     on CallConnectionId 
-| summarize DistinctDestinations = dcount(Destination) by Origin
-| top 1 by DistinctDestinations
+| summarize PerpNumber = dcount(Destination) by Origin
+| top 1 by PerpNumber
 
 ```
 {{< /note >}}
