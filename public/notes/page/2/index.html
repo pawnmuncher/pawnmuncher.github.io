@@ -39,33 +39,33 @@ Maron's Site</a>
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize calls<span style=color:#f92672>=</span><span style=color:#66d9ef>count</span>() <span style=color:#66d9ef>by</span> bin(<span style=color:#66d9ef>Timestamp</span>, <span style=color:#ae81ff>1</span>h) 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize <span style=color:#66d9ef>avg</span>(calls), percentile(calls, <span style=color:#ae81ff>50</span>)
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>//</span>Use <span style=color:#66d9ef>join</span> within same <span style=color:#66d9ef>table</span> <span style=color:#66d9ef>to</span> see how many calls the phone <span style=color:#f92672>#</span> rec<span style=color:#e6db74>&#39;d and hung up on
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>PhoneCalls 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| where EventType == &#39;</span><span style=color:#66d9ef>Connect</span><span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| where Properties.Destination != &#39;</span><span style=color:#ae81ff>0</span><span style=color:#e6db74>&#39; 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| join kind=inner
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    (PhoneCalls
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    | where EventType == &#39;</span><span style=color:#66d9ef>Disconnect</span><span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    | extend DisconnectProperties = Properties) 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    on CallConnectionId 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| where DisconnectProperties.DisconnectedBy == &#39;</span>Destination<span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| count
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>//Solution
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>PhoneCalls 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| where EventType == &#39;</span><span style=color:#66d9ef>Connect</span><span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| extend Origin  = tostring(Properties.Origin)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| extend Destination = tostring(Properties.Destination)  
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| where Properties has &#39;</span>IsHidden<span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| join kind=inner
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    (PhoneCalls
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    | where EventType == &#39;</span><span style=color:#66d9ef>Disconnect</span><span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    | extend DisconnectedBy = tostring(Properties.DisconnectedBy)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    | where DisconnectedBy == &#39;</span>Destination<span style=color:#e6db74>&#39;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    on CallConnectionId 
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| summarize DistinctDestinations = dcount(Destination) by Origin
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>| top 1 by DistinctDestinations
-</span></span></span></code></pre></div></div></div></div></div><div class=note-card><div class=item><h5 class=note-title><span>Season 2 - Case 1 - To bill or not to bill?</span></h5><div class=card><div class=card-body><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>Case</span> <span style=color:#ae81ff>1</span> training
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>Use <span style=color:#66d9ef>join</span> 
+</span></span><span style=display:flex><span>PhoneCalls 
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> EventType <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Connect&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> Properties.Destination <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;0&#39;</span> 
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span>
+</span></span><span style=display:flex><span>    (PhoneCalls
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> EventType <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Disconnect&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> extend DisconnectProperties <span style=color:#f92672>=</span> Properties) 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>on</span> CallConnectionId 
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> DisconnectProperties.DisconnectedBy <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Destination&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>count</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>Solution
+</span></span><span style=display:flex><span>PhoneCalls 
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> EventType <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Connect&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> extend Origin  <span style=color:#f92672>=</span> tostring(Properties.Origin)
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> extend Destination <span style=color:#f92672>=</span> tostring(Properties.Destination)  
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> Properties has <span style=color:#e6db74>&#39;IsHidden&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span>
+</span></span><span style=display:flex><span>    (PhoneCalls
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> EventType <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Disconnect&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> extend DisconnectedBy <span style=color:#f92672>=</span> tostring(Properties.DisconnectedBy)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> DisconnectedBy <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Destination&#39;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>on</span> CallConnectionId 
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize DistinctDestinations <span style=color:#f92672>=</span> dcount(Destination) <span style=color:#66d9ef>by</span> Origin
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> top <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>by</span> DistinctDestinations
+</span></span></code></pre></div></div></div></div></div><div class=note-card><div class=item><h5 class=note-title><span>Season 2 - Case 1 - To bill or not to bill?</span></h5><div class=card><div class=card-body><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>Case</span> <span style=color:#ae81ff>1</span> training
 </span></span><span style=display:flex><span><span style=color:#f92672>//</span>can run <span style=color:#66d9ef>sql</span> directly
 </span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> <span style=color:#66d9ef>SUM</span>(Consumed <span style=color:#f92672>*</span> Cost) <span style=color:#66d9ef>AS</span> TotalCost 
 </span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> Costs 
