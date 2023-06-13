@@ -69,9 +69,9 @@ badges:
   badge: "https://images.credly.com/size/340x340/images/0ba22331-acf9-4e8a-8ce3-b4cc3d376040/image.png"
 
 - type: certification
-  name: Security Analytics Professional
-  url: "https://www.credly.com/badges/1f9c9a50-07fa-4c98-8b2b-487211d497a6"
-  badge: "https://images.credly.com/size/340x340/images/ba1b8072-8ebe-432c-88e5-05bc809c624a/CompTIA_CSAP.png"
+  name: Practical Network Penetration Tester
+  url: "https://www.credential.net/profile/maronharrison735080/wallet"
+  badge: "https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/75407573"
 
 - type: certification
   name: Systems Security Certified Practitioner
@@ -80,18 +80,19 @@ badges:
 
 - type: soft-skill-indicator
   name: Leadership
-  percentage: 85
+  percentage: 75
   color: blue
 
 - type: soft-skill-indicator
-  name: Client Centric
-  percentage: 100
-  color: orange
+  name: Pentesting
+  percentage: 95
+  color: red
 
 - type: soft-skill-indicator
   name: Hard Working
   percentage: 85
   color: yellow
+
 
 # you can also provide color code instead of the color name
 # - type: soft-skill-indicator
