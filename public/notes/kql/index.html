@@ -203,35 +203,44 @@ Maron's Site</a>
 </span></span><span style=display:flex><span>) <span style=color:#66d9ef>on</span> CaseId
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize TotalEarnings <span style=color:#f92672>=</span> <span style=color:#66d9ef>sum</span>(Bounty) <span style=color:#66d9ef>by</span> DetectiveId
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> top <span style=color:#ae81ff>10</span> <span style=color:#66d9ef>by</span> TotalEarnings <span style=color:#66d9ef>desc</span>
-</span></span></code></pre></div></div></div></div></div><div class=note-card><div class=item><h5 class=note-title><span>Season 2 - Case 3 - Return Stolen Cars!</span></h5><div class=card><div class=card-body><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-SQL data-lang=SQL><span style=display:flex><span>CarsTraffic
+</span></span></code></pre></div></div></div></div></div><div class=note-card><div class=item><h5 class=note-title><span>Season 2 - Case 3 - Return Stolen Cars!</span></h5><div class=card><div class=card-body><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-SQL data-lang=SQL><span style=display:flex><span><span style=color:#f92672>//</span> Records <span style=color:#66d9ef>count</span>
+</span></span><span style=display:flex><span>CarsTraffic
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>count</span> 
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span> See <span style=color:#66d9ef>some</span> examples
 </span></span><span style=display:flex><span>CarsTraffic
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> take <span style=color:#ae81ff>100</span> 
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span> Records <span style=color:#66d9ef>count</span>
 </span></span><span style=display:flex><span>StolenCars
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>count</span> 
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>See <span style=color:#66d9ef>some</span> examples
 </span></span><span style=display:flex><span>StolenCars
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> take <span style=color:#ae81ff>100</span> 
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span> find <span style=color:#66d9ef>all</span> <span style=color:#66d9ef>rows</span> that have one <span style=color:#66d9ef>of</span> a list <span style=color:#66d9ef>of</span> VIN numbers
 </span></span><span style=display:flex><span>CarsTraffic 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> VIN <span style=color:#66d9ef>in</span> (<span style=color:#e6db74>&#39;FD655964S&#39;</span>, <span style=color:#e6db74>&#39;JO132865F&#39;</span>, <span style=color:#e6db74>&#39;AD701526K&#39;</span>) 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>count</span>
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>the stolen car <span style=color:#66d9ef>with</span> the most sightings
 </span></span><span style=display:flex><span>CarsTraffic 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> VIN <span style=color:#66d9ef>in</span> (StolenCars) 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize Sightings<span style=color:#f92672>=</span><span style=color:#66d9ef>count</span>() <span style=color:#66d9ef>by</span> VIN 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> top <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>by</span> Sightings
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>which were the <span style=color:#66d9ef>first</span> <span style=color:#66d9ef>and</span> <span style=color:#66d9ef>last</span> cars <span style=color:#66d9ef>to</span> be spotted <span style=color:#66d9ef>at</span> a certain intersection
 </span></span><span style=display:flex><span>CarsTraffic 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> Street <span style=color:#f92672>==</span> <span style=color:#ae81ff>180</span> <span style=color:#66d9ef>and</span> Ave <span style=color:#f92672>==</span> <span style=color:#ae81ff>121</span> 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize <span style=color:#66d9ef>First</span><span style=color:#f92672>=</span>arg_min(<span style=color:#66d9ef>Timestamp</span>, VIN), <span style=color:#66d9ef>Last</span><span style=color:#f92672>=</span>arg_max(<span style=color:#66d9ef>Timestamp</span>, VIN)
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>the street <span style=color:#66d9ef>and</span> avenue was stolen car <span style=color:#66d9ef>with</span> VIN number IR177866Y <span style=color:#66d9ef>first</span> sighted
 </span></span><span style=display:flex><span>CarsTraffic 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> VIN <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;IR177866Y&#39;</span> 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize <span style=color:#66d9ef>First</span><span style=color:#f92672>=</span>arg_min(<span style=color:#66d9ef>Timestamp</span>, Street, Ave)
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>find <span style=color:#66d9ef>all</span> cars that were <span style=color:#66d9ef>on</span> the same street <span style=color:#66d9ef>at</span> a certain time <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>both</span> the morning <span style=color:#66d9ef>and</span> evening <span style=color:#66d9ef>of</span> June <span style=color:#ae81ff>14</span>
 </span></span><span style=display:flex><span>CarsTraffic
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> <span style=color:#66d9ef>Timestamp</span> <span style=color:#66d9ef>between</span> (datetime(<span style=color:#ae81ff>2023</span><span style=color:#f92672>-</span><span style=color:#ae81ff>06</span><span style=color:#f92672>-</span><span style=color:#ae81ff>14</span> <span style=color:#ae81ff>08</span>:<span style=color:#ae81ff>00</span>) .. <span style=color:#ae81ff>1</span>h)
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind <span style=color:#f92672>=</span> <span style=color:#66d9ef>inner</span> (
@@ -240,23 +249,30 @@ Maron's Site</a>
 </span></span><span style=display:flex><span>    ) <span style=color:#66d9ef>on</span> VIN, Street, Ave
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize dcount(VIN)
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> CarsTraffic 
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>cars have been <span style=color:#66d9ef>at</span> Street <span style=color:#ae81ff>228</span>, Ave <span style=color:#ae81ff>145</span> but have never been sighted <span style=color:#66d9ef>at</span> <span style=color:#66d9ef>location</span> Street <span style=color:#ae81ff>121</span>, Ave <span style=color:#ae81ff>180</span>
+</span></span><span style=display:flex><span>CarsTraffic 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> Street <span style=color:#f92672>==</span> <span style=color:#ae81ff>228</span> <span style=color:#66d9ef>and</span> Ave <span style=color:#f92672>==</span> <span style=color:#ae81ff>145</span> 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span>leftanti (
 </span></span><span style=display:flex><span>    CarsTraffic <span style=color:#f92672>|</span> <span style=color:#66d9ef>where</span> Street <span style=color:#f92672>==</span> <span style=color:#ae81ff>121</span> <span style=color:#66d9ef>and</span> Ave <span style=color:#f92672>==</span> <span style=color:#ae81ff>180</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>distinct</span> VIN) <span style=color:#66d9ef>on</span> VIN 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>distinct</span> VIN 
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>count</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>let VinsbyLocation <span style=color:#f92672>=</span> StolenCars
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>create</span> the joined <span style=color:#66d9ef>data</span> <span style=color:#66d9ef>to</span> find the stash house <span style=color:#66d9ef>for</span> the stolen cars
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>last</span> seen <span style=color:#66d9ef>location</span> <span style=color:#66d9ef>for</span> stolen cars
+</span></span><span style=display:flex><span>let VinsbyLocation <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    StolenCars
 </span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span> (CarsTraffic) <span style=color:#66d9ef>on</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#66d9ef>left</span>.VIN <span style=color:#f92672>==</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#66d9ef>right</span>.VIN
 </span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> summarize arg_max(<span style=color:#66d9ef>Timestamp</span>, Ave, Street) <span style=color:#66d9ef>by</span> VIN
-</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> extend TimeKey <span style=color:#f92672>=</span> bin(<span style=color:#66d9ef>Timestamp</span>, <span style=color:#ae81ff>15</span>m)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> extend TimeKey <span style=color:#f92672>=</span> bin(<span style=color:#66d9ef>Timestamp</span>, <span style=color:#ae81ff>5</span>m)
 </span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> project TimeKey, Ave, Street;
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>all</span> VIN <span style=color:#66d9ef>at</span> the same <span style=color:#66d9ef>location</span> within <span style=color:#ae81ff>15</span> time window
 </span></span><span style=display:flex><span>let VinsbyTime <span style=color:#f92672>=</span> VinsbyLocation
-</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span> (CarsTraffic <span style=color:#f92672>|</span> extend TimeKey <span style=color:#f92672>=</span> bin(<span style=color:#66d9ef>Timestamp</span>, <span style=color:#ae81ff>15</span>m)) <span style=color:#66d9ef>on</span> TimeKey, Ave, Street
+</span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span> ( CarsTraffic <span style=color:#f92672>|</span> extend TimeKey <span style=color:#f92672>=</span> bin(<span style=color:#66d9ef>Timestamp</span>, <span style=color:#ae81ff>5</span>m)) <span style=color:#66d9ef>on</span> TimeKey, Ave, Street
 </span></span><span style=display:flex><span>    <span style=color:#f92672>|</span> summarize <span style=color:#66d9ef>by</span> VIN;
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span><span style=color:#66d9ef>last</span> sighting <span style=color:#66d9ef>for</span> <span style=color:#66d9ef>each</span> vin <span style=color:#66d9ef>and</span> most visited.  The top two <span style=color:#66d9ef>are</span> <span style=color:#66d9ef>where</span> the plates were swapped
+</span></span><span style=display:flex><span><span style=color:#f92672>//</span>the <span style=color:#66d9ef>next</span> <span style=color:#66d9ef>is</span> the stash spot
 </span></span><span style=display:flex><span>VinsbyTime
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span> (CarsTraffic <span style=color:#f92672>|</span> summarize arg_max(<span style=color:#66d9ef>Timestamp</span>, Ave, Street) <span style=color:#66d9ef>by</span> VIN) <span style=color:#66d9ef>on</span> VIN
+</span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>join</span> kind<span style=color:#f92672>=</span><span style=color:#66d9ef>inner</span> ( CarsTraffic <span style=color:#f92672>|</span> summarize arg_max(<span style=color:#66d9ef>Timestamp</span>, Ave, Street) <span style=color:#66d9ef>by</span> VIN ) <span style=color:#66d9ef>on</span> VIN
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> summarize <span style=color:#66d9ef>count</span>() <span style=color:#66d9ef>by</span> Ave, Street
 </span></span><span style=display:flex><span><span style=color:#f92672>|</span> <span style=color:#66d9ef>order</span> <span style=color:#66d9ef>by</span> count_ <span style=color:#66d9ef>desc</span>
 </span></span></code></pre></div></div></div></div></div></div></div></section></div><footer id=footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=https://www.mjh3.com#about>About</a></li><li class=nav-item><a class=smooth-scroll href=https://www.mjh3.com#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=https://www.mjh3.com#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=https://www.mjh3.com#education>Education</a></li><li class=nav-item><a class=smooth-scroll href=https://www.mjh3.com#achievements>Achievements</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><a href=mailto: target=_blank rel=noopener><span><i class="fas fa-envelope"></i></span> <span></span></a></li><li><a href=https://github.com/pawnmuncher target=_blank rel=noopener><span><i class="fab fa-github"></i></span> <span>pawnmuncher</span></a></li><li><a href=https://www.linkedin.com/in/cyber-consultant target=_blank rel=noopener><span><i class="fab fa-linkedin"></i></span> <span>M Harrison</span></a></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hugo-toha/toha target=_blank rel=noopener><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png alt="Toha Theme Logo">

@@ -233,35 +233,44 @@ DetectiveCases
 {{< note title="Season 2 - Case 3 - Return Stolen Cars!" >}}
 
 ```SQL
+// Records count
 CarsTraffic
 | count 
 
+// See some examples
 CarsTraffic
 | take 100 
 
+// Records count
 StolenCars
 | count 
 
+//See some examples
 StolenCars
 | take 100 
 
+// find all rows that have one of a list of VIN numbers
 CarsTraffic 
 | where VIN in ('FD655964S', 'JO132865F', 'AD701526K') 
 | count
 
+//the stolen car with the most sightings
 CarsTraffic 
 | where VIN in (StolenCars) 
 | summarize Sightings=count() by VIN 
 | top 1 by Sightings
 
+//which were the first and last cars to be spotted at a certain intersection
 CarsTraffic 
 | where Street == 180 and Ave == 121 
 | summarize First=arg_min(Timestamp, VIN), Last=arg_max(Timestamp, VIN)
 
+//the street and avenue was stolen car with VIN number IR177866Y first sighted
 CarsTraffic 
 | where VIN == 'IR177866Y' 
 | summarize First=arg_min(Timestamp, Street, Ave)
 
+//find all cars that were on the same street at a certain time in both the morning and evening of June 14
 CarsTraffic
 | where Timestamp between (datetime(2023-06-14 08:00) .. 1h)
 | join kind = inner (
@@ -270,23 +279,30 @@ CarsTraffic
     ) on VIN, Street, Ave
 | summarize dcount(VIN)
 
- CarsTraffic 
+//cars have been at Street 228, Ave 145 but have never been sighted at location Street 121, Ave 180
+CarsTraffic 
 | where Street == 228 and Ave == 145 
 | join kind=leftanti (
     CarsTraffic | where Street == 121 and Ave == 180 | distinct VIN) on VIN 
 | distinct VIN 
 | count
 
-let VinsbyLocation = StolenCars
+//create the joined data to find the stash house for the stolen cars
+//last seen location for stolen cars
+let VinsbyLocation =
+    StolenCars
     | join kind=inner (CarsTraffic) on $left.VIN == $right.VIN
     | summarize arg_max(Timestamp, Ave, Street) by VIN
-    | extend TimeKey = bin(Timestamp, 15m)
+    | extend TimeKey = bin(Timestamp, 5m)
     | project TimeKey, Ave, Street;
+//all VIN at the same location within 15 time window
 let VinsbyTime = VinsbyLocation
-    | join kind=inner (CarsTraffic | extend TimeKey = bin(Timestamp, 15m)) on TimeKey, Ave, Street
+    | join kind=inner ( CarsTraffic | extend TimeKey = bin(Timestamp, 5m)) on TimeKey, Ave, Street
     | summarize by VIN;
+//last sighting for each vin and most visited.  The top two are where the plates were swapped
+//the next is the stash spot
 VinsbyTime
-| join kind=inner (CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN) on VIN
+| join kind=inner ( CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN ) on VIN
 | summarize count() by Ave, Street
 | order by count_ desc
 ```
