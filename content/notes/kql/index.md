@@ -278,17 +278,16 @@ CarsTraffic
 | distinct VIN 
 | count
 
-let VinsbyLocation =
-    StolenCars
+let VinsbyLocation = StolenCars
     | join kind=inner (CarsTraffic) on $left.VIN == $right.VIN
     | summarize arg_max(Timestamp, Ave, Street) by VIN
-    | extend TimeKey = bin(Timestamp, 5m)
+    | extend TimeKey = bin(Timestamp, 15m)
     | project TimeKey, Ave, Street;
 let VinsbyTime = VinsbyLocation
-    | join kind=inner ( CarsTraffic | extend TimeKey = bin(Timestamp, 5m)) on TimeKey, Ave, Street
+    | join kind=inner (CarsTraffic | extend TimeKey = bin(Timestamp, 15m)) on TimeKey, Ave, Street
     | summarize by VIN;
 VinsbyTime
-| join kind=inner ( CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN ) on VIN
+| join kind=inner (CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN) on VIN
 | summarize count() by Ave, Street
 | order by count_ desc
 
