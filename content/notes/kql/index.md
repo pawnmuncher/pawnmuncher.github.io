@@ -233,7 +233,6 @@ DetectiveCases
 {{< note title="Season 2 - Case 3 - Return Stolen Cars!" >}}
 
 ```SQL
-
 CarsTraffic
 | count 
 
@@ -290,7 +289,5 @@ VinsbyTime
 | join kind=inner (CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN) on VIN
 | summarize count() by Ave, Street
 | order by count_ desc
-
 ```
-
 {{< /note >}}
