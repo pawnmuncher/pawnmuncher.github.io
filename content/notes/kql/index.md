@@ -229,3 +229,69 @@ DetectiveCases
 ```
 
 {{< /note >}}
+
+{{< note title="Season 2 - Case 3 - Return Stolen Cars!" >}}
+
+```SQL
+
+CarsTraffic
+| count 
+
+CarsTraffic
+| take 100 
+
+StolenCars
+| count 
+
+StolenCars
+| take 100 
+
+CarsTraffic 
+| where VIN in ('FD655964S', 'JO132865F', 'AD701526K') 
+| count
+
+CarsTraffic 
+| where VIN in (StolenCars) 
+| summarize Sightings=count() by VIN 
+| top 1 by Sightings
+
+CarsTraffic 
+| where Street == 180 and Ave == 121 
+| summarize First=arg_min(Timestamp, VIN), Last=arg_max(Timestamp, VIN)
+
+CarsTraffic 
+| where VIN == 'IR177866Y' 
+| summarize First=arg_min(Timestamp, Street, Ave)
+
+CarsTraffic
+| where Timestamp between (datetime(2023-06-14 08:00) .. 1h)
+| join kind = inner (
+    CarsTraffic
+    | where Timestamp between (datetime(2023-06-14 20:00) .. 1h)
+    ) on VIN, Street, Ave
+| summarize dcount(VIN)
+
+ CarsTraffic 
+| where Street == 228 and Ave == 145 
+| join kind=leftanti (
+    CarsTraffic | where Street == 121 and Ave == 180 | distinct VIN) on VIN 
+| distinct VIN 
+| count
+
+let VinsbyLocation =
+    StolenCars
+    | join kind=inner (CarsTraffic) on $left.VIN == $right.VIN
+    | summarize arg_max(Timestamp, Ave, Street) by VIN
+    | extend TimeKey = bin(Timestamp, 5m)
+    | project TimeKey, Ave, Street;
+let VinsbyTime = VinsbyLocation
+    | join kind=inner ( CarsTraffic | extend TimeKey = bin(Timestamp, 5m)) on TimeKey, Ave, Street
+    | summarize by VIN;
+VinsbyTime
+| join kind=inner ( CarsTraffic | summarize arg_max(Timestamp, Ave, Street) by VIN ) on VIN
+| summarize count() by Ave, Street
+| order by count_ desc
+
+```
+
+{{< /note >}}
