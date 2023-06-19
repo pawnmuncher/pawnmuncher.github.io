@@ -293,11 +293,11 @@ let VinsbyLocation =
     StolenCars
     | join kind=inner (CarsTraffic) on $left.VIN == $right.VIN
     | summarize arg_max(Timestamp, Ave, Street) by VIN
-    | extend TimeKey = bin(Timestamp, 5m)
+    | extend TimeKey = bin(Timestamp, 15m)
     | project TimeKey, Ave, Street;
 //all VIN at the same location within 15 time window
 let VinsbyTime = VinsbyLocation
-    | join kind=inner ( CarsTraffic | extend TimeKey = bin(Timestamp, 5m)) on TimeKey, Ave, Street
+    | join kind=inner ( CarsTraffic | extend TimeKey = bin(Timestamp, 15m)) on TimeKey, Ave, Street
     | summarize by VIN;
 //last sighting for each vin and most visited.  The top two are where the plates were swapped
 //the next is the stash spot
