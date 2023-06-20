@@ -32,7 +32,7 @@ skills:
 
 - name: Linux
   logo: /images/sections/skills/parrot2.png
-  summary: "My Bash scripting skills enable me to develop attack simulations and automate various tasks during the engagement. I can manipulate and analyze data, write custom tools, and orchestrate complex attack scenarios, enhancing the effectiveness and efficiency of the red teaming process."
+  summary: "My Bash scripting skills enable me to develop attack simulations and automate various tasks during the engagement. I can manipulate and analyze data, write custom tools, and orchestrate complex attack scenarios."
 
 - name: Python
   logo: /images/sections/skills/python.png
