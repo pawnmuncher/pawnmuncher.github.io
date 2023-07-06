@@ -307,3 +307,76 @@ VinsbyTime
 | order by count_ desc
 ```
 {{< /note >}}
+
+{{< note title="Season 2 - Case 4 - Triple trouble!" >}}
+
+```SQL
+// Triple trouble
+NetworkMetrics  
+| getschema 
+
+NetworkMetrics
+//| count
+| take 10
+
+IpInfo
+| getschema 
+
+IpInfo
+//| count
+| take 10
+
+//bin function to create buckets of time
+NetworkMetrics
+| summarize count() by bin(Timestamp, 1d)
+| render timechart
+
+// You can use time-chart to look on the data
+NetworkMetrics
+| summarize avg(BytesSent) by bin(Timestamp, 1d)
+| render timechart
+
+// .. or you can use query to calculate it
+NetworkMetrics
+| summarize avg(BytesSent) by bin(Timestamp, 1d)
+| top 1 by avg_BytesSent asc
+
+NetworkMetrics
+| take 10
+| evaluate ipv4_lookup(IpInfo, ClientIP, IpCidr)
+
+//Which company most frequently contacted IP address 178.248.55.129
+NetworkMetrics
+| where TargetIP == '178.248.55.129'
+| evaluate ipv4_lookup(IpInfo, ClientIP, IpCidr)
+| summarize Count=count() by Info
+| order by Count
+
+//The following query creates two series (as two columns): one with the number of records per day and the other with the average amount of data received per day.
+NetworkMetrics
+| make-series count(), avg(BytesReceived) on Timestamp step 1d
+| render timechart with (ysplit=panels)
+
+
+//I suspect that someone has hacked into the Digitown municipality system and stolen these documents.
+// Our system is a known data hub and hosts various information about the town itself, real-time monitoring 
+//systems of the city, tax payments, etc. 
+//It serves as a real-time data provider to many organizations around the world, so it receives a lot of traffic.
+//Unfortunately, I don't have much data to give you. 
+//All I have is a 30-day traffic statistics report captured by the Digitown municipality system network routers.
+let sus = 
+NetworkMetrics
+| summarize dcount(TargetIP) by ClientIP
+| where dcount_TargetIP == 1 
+| distinct ClientIP
+| evaluate ipv4_lookup(IpInfo, ClientIP, IpCidr)
+| project ClientIP, Info;
+NetworkMetrics
+| lookup kind=inner sus on ClientIP
+| make-series BytesSent=sum(BytesSent) on Timestamp step 1d by Info
+| extend (flag, score, baseline) = series_decompose_anomalies(BytesSent)
+| extend top_sus = toreal(series_stats_dynamic(score)['max'])
+| top 2 by top_sus
+| render anomalychart 
+```
+{{< /note >}}
