@@ -360,10 +360,11 @@ NetworkMetrics
 
 //I suspect that someone has hacked into the Digitown municipality system and stolen these documents.
 // Our system is a known data hub and hosts various information about the town itself, real-time monitoring 
-//systems of the city, tax payments, etc. 
-//It serves as a real-time data provider to many organizations around the world, so it receives a lot of traffic.
-//Unfortunately, I don't have much data to give you. 
-//All I have is a 30-day traffic statistics report captured by the Digitown municipality system network routers.
+// systems of the city, tax payments, etc. 
+// It serves as a real-time data provider to many organizations around the world, so it receives a lot of traffic.
+// Unfortunately, I dont have much data to give you. 
+// All I have is a 30day traffic statistics report captured by the Digitown municipality system network routers
+
 let sus = 
 NetworkMetrics
 | summarize dcount(TargetIP) by ClientIP
