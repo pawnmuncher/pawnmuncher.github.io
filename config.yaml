@@ -21,13 +21,8 @@ languages:
   en:
     languageName: English
     weight: 1
-  bn:
-    languageName: বাংলা
-    weight: 0
 
-disableLanguages:
-- bn
-
+    
 # Force a locale to be use, really useful to develop the application ! Should be commented in production, the "weigh      t" should rocks.
 # DefaultContentLanguage: bn
 
@@ -153,8 +148,8 @@ params:
       enabled: false
       services:
         # Google Analytics
-        google:
-          id: G-H4LBG7NDFZ
+        #google:
+        #  id: G-H4LBG7NDFZ
         # # CounterDev
         # counterDev:
         #   id: <your counterdev id>
@@ -171,10 +166,10 @@ params:
       enable: false
       services:
         kofi:
-          user: hossainemruz
-          text: Tip Me
-          textColor: '#f9fafc'
-          backgroundColor: '#248aaa'
+        #  user: hossainemruz
+        #  text: Tip Me
+        #  textColor: '#f9fafc'
+        #  backgroundColor: '#248aaa'
         # buymeacoffee:
         #   user: <your buymeacoffee.com user>
         #   text: Support me on Buy me a coffee!
