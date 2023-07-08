@@ -2,7 +2,6 @@
   "comments": {
     "dependencies": {},
     "devDependencies": {
-      "@fontsource/mulish": "hugo-toha",
       "@fortawesome/fontawesome-free": "hugo-toha",
       "autoprefixer": "hugo-toha",
       "bootstrap": "hugo-toha",
