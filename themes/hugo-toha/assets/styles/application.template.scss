@@ -2,13 +2,6 @@
 // TODO: Refactor to use bootstrap sass variable for theming.
 @import 'bootstrap/scss/bootstrap';
 
-// The Mulish font, we use font-weight 300 - 700
-@import '@fontsource/mulish/300';
-@import '@fontsource/mulish/index'; // 400
-@import '@fontsource/mulish/500';
-@import '@fontsource/mulish/600';
-@import '@fontsource/mulish/700';
-
 // layouts
 @import './layouts/main';
 @import './layouts/list';
