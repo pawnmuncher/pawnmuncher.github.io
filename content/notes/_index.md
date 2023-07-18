@@ -378,6 +378,70 @@ NetworkMetrics
 | extend (flag, score, baseline) = series_decompose_anomalies(BytesSent)
 | extend top_sus = toreal(series_stats_dynamic(score)['max'])
 | top 2 by top_sus
-| render anomalychart 
+```
+{{< /note >}}
+
+{{< note title="Season 2 - Case 5 - El Puente is back!" >}}
+
+```
+StorageArchiveLogs
+//| getschema 
+//| take 100
+| count 
+
+//
+StorageArchiveLogs
+| parse EventText with TransactionType " blob transaction:" *
+| distinct TransactionType
+
+StorageArchiveLogs
+| parse EventText with "Read blob transaction: '" BlobURI "' read access (" ReadCount:long " reads) were detected on the origin"
+| take 10
+
+StorageArchiveLogs
+| parse EventText with 
+    "Read blob transaction: '" BlobURI "' read access (" ReadCount:long " reads) were detected" *
+| summarize sum(ReadCount) by BlobURI
+| top 1 by sum_ReadCount
+
+StorageArchiveLogs
+| parse EventText with TransactionType " blob transaction: '" BlobURI "'" *
+| extend Details = parse_url(BlobURI)
+| project EventText, BlobURI, Details
+| take 10
+
+StorageArchiveLogs
+| parse EventText with TransactionType " blob transaction: '" BlobURI "'" *
+| extend Details = parse_url(BlobURI)
+| extend Host=tostring(Details.Host)
+| where TransactionType == 'Delete'
+| summarize count() by Host
+| top 1 by count_
+
+// Using conditional aggregates
+StorageArchiveLogs
+| parse EventText with TransactionType " blob transaction: '" BlobURI "'" *
+| parse EventText with * "(" Reads:long "reads)" *
+| extend Host = tostring(parse_url(BlobURI).Host)
+| summarize Deletes=countif(TransactionType  == 'Delete'), 
+		Reads=sumif(Reads, TransactionType == 'Read') by Host
+| top 1 by Reads
+
+// Using join - requires double-pass over the data, so it works slower
+let ParsedData=StorageArchiveLogs
+    | parse EventText with TransactionType " blob transaction: '" BlobURI "'" *
+    | extend Host = tostring(parse_url(BlobURI).Host);
+ParsedData
+| where TransactionType == 'Read'
+| parse EventText with * "(" Reads:long "reads)" *
+| summarize Reads=sum(Reads) by Host
+| join kind=inner 
+    (
+    ParsedData
+    | where TransactionType == 'Delete'
+    | summarize count() by Host)
+    on Host
+| top 1 by Reads
+
 ```
 {{< /note >}}
