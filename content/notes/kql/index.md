@@ -378,6 +378,5 @@ NetworkMetrics
 | extend (flag, score, baseline) = series_decompose_anomalies(BytesSent)
 | extend top_sus = toreal(series_stats_dynamic(score)['max'])
 | top 2 by top_sus
-| render anomalychart 
 ```
 {{< /note >}}
