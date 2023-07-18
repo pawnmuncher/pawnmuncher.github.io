@@ -383,7 +383,7 @@ NetworkMetrics
 
 {{< note title="Season 2 - Case 5 - El Puente is back!" >}}
 
-```
+```sql
 StorageArchiveLogs
 //| getschema 
 //| take 100
@@ -442,6 +442,30 @@ ParsedData
     | summarize count() by Host)
     on Host
 | top 1 by Reads
+
+let sus = StorageArchiveLogs
+    //parse blob data nd get all host and path values
+    | parse EventText with TransactionType " blob transaction:" *
+    | parse EventText with * "blob transaction: '" BlobURI "'" *
+    | parse EventText with * "read access (" ReadCount: long " reads)" *
+    | extend All = parse_url(BlobURI)
+    | extend Host = tostring(All.Host)
+    | extend Path = tostring(All.Path)
+    //define published time from create records deleted time from delete records
+    | summarize
+        published = minif(Timestamp, TransactionType == 'Create')
+        , deleted = minif(Timestamp, TransactionType == 'Delete')
+        by Host, Path
+    //look for deletes that followed a create within 30 min window
+    | extend lifespan = deleted - published
+    | where lifespan < timespan(30m)
+    | project Path;
+StorageArchiveLogs
+// get the Event Text and project EventText Blob URI All Path 
+| parse EventText with * "blob transaction: '" BlobURI "'" *
+| extend All = parse_url(BlobURI)
+| extend Path = tostring(All.Path)
+| where Path in (sus)
 
 ```
 {{< /note >}}
