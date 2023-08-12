@@ -11,6 +11,26 @@ section:
 # Your experiences
 experiences:
 - company:
+    name: Redacted
+    url: ""
+    location: Dallas, TX
+    # company overview
+    overview: A Mid sized institution with integrity.
+  positions:
+  - designation: Senior Vulnerability Analyst
+    start: Aug 2023
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Conduct regular vulnerability assessments of systems and applications using vulnerability scanning tools
+    - Analyze and interpret vulnerability scan results, and prioritize vulnerabilities based on risk
+    - Conduct penetration testing and vulnerability research to identify new and emerging threats
+    - Review information security aspects of emerging technologies to identify how both blue and red team initiatives could incorporate them
+    - Investigate security incidents to determine root cause and develop remediation plans
+    - Communicate with senior management and other stakeholders regarding security risks and incidents
+
+- company:
     name: Binary Defense
     url: "https://www.binarydefense.com"
     location: Stow, OH
@@ -20,14 +40,14 @@ experiences:
   - designation: Cybersecurity Analyst, Level II
     start: Nov 2021
     # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: Aug 2023
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Support 35+ high-priority clientele while furthering the efforts of the talented internal security teams
-    - Investigate active threats, including containment of compromised assets, gathering malware, and sandboxing.
-    - Evaluate IOCs and map to MITRE while providing input to formulate hunting rules that prevent future attacks.
-    - Utilize a myriad of forensic tools to dump memory, network traffic, and other sources of evidence.
-    - Review information security aspects of emerging technologies to identify how both blue and red team initiatives could incorporate them.
+    - Supported 35+ high-priority clientele while furthering the efforts of the talented internal security teams
+    - Investigated active threats, including containment of compromised assets, gathering malware, and sandboxing.
+    - Evaluated IOCs and map to MITRE while providing input to formulate hunting rules that prevent future attacks.
+    - Utilized a myriad of forensic tools to dump memory, network traffic, and other sources of evidence.
+    - Reviewed information security aspects of emerging technologies to identify how both blue and red team initiatives could incorporate them.
 
 - company:
     name: MJH3, LLC
