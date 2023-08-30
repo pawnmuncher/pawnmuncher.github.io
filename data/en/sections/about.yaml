@@ -8,11 +8,11 @@ section:
   template: sections/about.html
 
 # your designation
-designation: Cybersecurity Analyst
+designation: Senior Vulnerability Analyst
 # your company information
 company:
-  name: Binary Defense
-  url: "https://www.binarydefense.com"
+  name: Redacted
+  url: ""
 
 # your resume. this file path should be relative to you "static" directory
 # Dreprecated. Use resourceLinks instead.
@@ -26,7 +26,7 @@ summary: 'I love Cybersecurity as it allows me to work under constant pressure, 
 socialLinks:
 - name: Email
   icon: "fas fa-envelope"
-  url: "rgfsa1+site@gmail.com"
+  url: ""
 
 - name: Github
   icon: "fab fa-github"
@@ -76,7 +76,7 @@ badges:
 - type: certification
   name: Systems Security Certified Practitioner
   url: "https://www.credly.com/badges/95959f10-32c1-406b-beb8-e7c111f85377"
-  badge: "https://images.credly.com/size/340x340/images/4e780c60-b569-4c71-bdb9-98a42792b818/isc2_sscp.png"
+  badge: "https://images.credly.com/size/340x340/images/c4320f01-2ff4-4508-984a-415fc94e3aec/image.png"
 
 - type: soft-skill-indicator
   name: Leadership

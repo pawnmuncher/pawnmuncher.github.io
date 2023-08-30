@@ -31,6 +31,21 @@ experiences:
     - Communicate with senior management and other stakeholders regarding security risks and incidents
 
 - company:
+    name: redacted Healthcare
+    url: ""
+    location: USA
+    # company overview
+    overview: To improve the health and quality of life of the individuals and communities we serve.
+  positions:
+  - designation: Cybersecurity Analyst/Engineer
+    start: Aug 2023
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    end: 
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Help support a team of professionals engaged in keeping the world a safer place
+    
+- company:
     name: Binary Defense
     url: "https://www.binarydefense.com"
     location: Stow, OH
