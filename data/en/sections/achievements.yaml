@@ -45,6 +45,10 @@ achievements:
   image: /images/sections/achievements/htb.jpg
   summary: Top 500 Global Ranking
   url: "https://app.hackthebox.com/profile/277042"
+- title: Certified Penetration Testing Specialist
+  image: /images/sections/achievements/cpts.png
+  summary: CPTS Certification - hack The Box
+  url: "https://app.hackthebox.com/profile/277042"
 
 # - title: Award Winner
 #   image: /images/sections/achievements/woman-winner.jpg
