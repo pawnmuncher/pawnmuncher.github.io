@@ -74,9 +74,9 @@ badges:
   badge: "https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/75407573"
 
 - type: certification
-  name: Systems Security Certified Practitioner
-  url: "https://www.credly.com/badges/95959f10-32c1-406b-beb8-e7c111f85377"
-  badge: "https://images.credly.com/size/340x340/images/c4320f01-2ff4-4508-984a-415fc94e3aec/image.png"
+  name: Certified Penetration Testing Specialist
+  url: "https://www.credly.com/badges/b514f3b3-c208-4e86-9533-7de50bcd2833"
+  badge: "https://images.credly.com/size/340x340/images/e63aa507-b974-4e67-bae6-1e425f6e2a99/image.png"
 
 - type: soft-skill-indicator
   name: Leadership
