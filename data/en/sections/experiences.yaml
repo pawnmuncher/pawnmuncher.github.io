@@ -35,7 +35,7 @@ experiences:
     url: ""
     location: USA
     # company overview
-    overview: To improve the health and quality of life of the individuals and communities we serve.
+    overview: Cybersecurity Engineering duties, Analyst Duties.
   positions:
   - designation: Cybersecurity Analyst/Engineer
     start: Aug 2023
@@ -58,7 +58,7 @@ experiences:
     end: Aug 2023
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Supported 35+ high-priority clientele while furthering the efforts of the talented internal security teams
+    - Supported companies high-priority clientele while furthering the efforts of the talented internal security teams
     - Investigated active threats, including containment of compromised assets, gathering malware, and sandboxing.
     - Evaluated IOCs and map to MITRE while providing input to formulate hunting rules that prevent future attacks.
     - Utilized a myriad of forensic tools to dump memory, network traffic, and other sources of evidence.
