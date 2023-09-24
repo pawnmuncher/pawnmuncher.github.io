@@ -18,6 +18,10 @@ achievements:
   image: /images/sections/achievements/pnpt.png
   summary: Practical Network Penetration Tester Certification - TCM Security
   url: "https://www.credential.net/profile/maronharrison735080/wallet"
+- title: Microsoft Certified - Kusto Detective Season 2 KQL 
+  image: /images/sections/achievements/kql_s2.png
+  summary: Microsoft Certified - The ultimate badge for the ultimate Kusto detective!
+  url: "https://www.credly.com/badges/765ed5d0-05d7-4d09-a11e-7a3d1134fd7c/public_url"  
 - title: Top Defender
   image: /images/sections/achievements/top_defender.png
   summary: Top Defender Award at Binary Defense Dec 2022.
